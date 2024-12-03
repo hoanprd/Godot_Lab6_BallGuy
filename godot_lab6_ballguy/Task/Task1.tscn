@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://dwuchfm62mlcd"]
-
-[node name="Task1" type="Node2D"]
-
-[node name="Ground" type="TileMapLayer" parent="."]

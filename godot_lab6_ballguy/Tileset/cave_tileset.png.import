@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mpous1m38kgr"
-path="res://.godot/imported/cave-platformer-tileset-16x16.png-6dd1c9177f422565e5c1d4eb9204c85e.ctex"
+path="res://.godot/imported/cave_tileset.png-29b53f1d9596b850caf3d68f61e0a5a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/cave-platformer-tileset-16x16.png"
-dest_files=["res://.godot/imported/cave-platformer-tileset-16x16.png-6dd1c9177f422565e5c1d4eb9204c85e.ctex"]
+source_file="res://Tileset/cave_tileset.png"
+dest_files=["res://.godot/imported/cave_tileset.png-29b53f1d9596b850caf3d68f61e0a5a0.ctex"]
 
 [params]
 
