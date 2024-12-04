@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b36x51p7a4at0"]
+[gd_scene load_steps=4 format=3 uid="uid://b36x51p7a4at0"]
 
 [ext_resource type="Texture2D" uid="uid://bhb7uggn7lj6g" path="res://icon.svg" id="1_k7foe"]
+[ext_resource type="Script" path="res://Script/player.gd" id="1_lylpt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7uo3p"]
 
 [node name="Player" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 29
+mass = 1.2
+gravity_scale = 0.5
+script = ExtResource("1_lylpt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -14,3 +20,19 @@ texture = ExtResource("1_k7foe")
 shape = SubResource("CircleShape2D_7uo3p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RayCast1" type="RayCast2D" parent="."]
+position = Vector2(-12, -13)
+target_position = Vector2(27, 0)
+
+[node name="RayCast2" type="RayCast2D" parent="."]
+position = Vector2(13, -11)
+target_position = Vector2(0, 24)
+
+[node name="RayCast3" type="RayCast2D" parent="."]
+position = Vector2(11, 13)
+target_position = Vector2(-26, 0)
+
+[node name="RayCast4" type="RayCast2D" parent="."]
+position = Vector2(-13, 10)
+target_position = Vector2(0, -24)
