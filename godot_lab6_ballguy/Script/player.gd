@@ -2,7 +2,7 @@ extends RigidBody2D
 
 @onready var move_right_force = Vector2(10, 0)
 @onready var move_left_force = Vector2(-10, 0)
-@onready var jump_force = Vector2(0, -200)
+@onready var jump_force = Vector2(0, -50)
 @onready var move_speed_max = 50
 @onready var can_jump = false
 @onready var sprite = $Sprite2D
