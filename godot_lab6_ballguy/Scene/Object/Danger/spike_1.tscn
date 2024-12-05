@@ -6,8 +6,13 @@
 
 [node name="Spike" type="Area2D"]
 script = ExtResource("1_deagu")
+damageDeal = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cu4wo")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="HurtTimer" type="Timer" parent="."]

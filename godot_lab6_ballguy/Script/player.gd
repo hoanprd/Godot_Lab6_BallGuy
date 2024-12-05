@@ -2,18 +2,20 @@ extends RigidBody2D
 
 @onready var move_right_force = Vector2(10, 0)
 @onready var move_left_force = Vector2(-10, 0)
-@onready var jump_force = Vector2(0, -50)
+@onready var jump_force = Vector2(0, -30)
 @onready var move_speed_max = 50
 @onready var can_jump = false
+@onready var ap = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var ray_foot_1 = $RayCast1
 @onready var ray_foot_2 = $RayCast2
 @onready var ray_foot_3 = $RayCast3
 @onready var ray_foot_4 = $RayCast4
+@onready var end_anim_timer = $EndAnimTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,4 +49,10 @@ func process_input():
 	if Input.is_action_just_pressed("ui_accept") and can_jump == true:
 		#AudioServer.set_bus_mute(sfxBus, false)
 		#jumpSound.play()
+		ap.play("jump")
+		end_anim_timer.start()
 		self.apply_impulse(jump_force, Vector2(0, 0))
+
+
+func _on_end_anim_timer_timeout() -> void:
+	ap.play("idle")

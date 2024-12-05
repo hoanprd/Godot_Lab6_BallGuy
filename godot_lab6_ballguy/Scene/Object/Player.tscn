@@ -1,9 +1,100 @@
-[gd_scene load_steps=4 format=3 uid="uid://b36x51p7a4at0"]
+[gd_scene load_steps=9 format=3 uid="uid://b36x51p7a4at0"]
 
-[ext_resource type="Texture2D" uid="uid://bhb7uggn7lj6g" path="res://icon.svg" id="1_k7foe"]
 [ext_resource type="Script" path="res://Script/player.gd" id="1_lylpt"]
+[ext_resource type="Texture2D" uid="uid://dkfc8jm3riwxt" path="res://Sprite/Ball_idle.png" id="2_x71qi"]
+[ext_resource type="Texture2D" uid="uid://b7llc074xw47n" path="res://Sprite/Ball_jump.png" id="3_gpwdj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7uo3p"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_subh7"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_x71qi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ox7s4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_x71qi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0a7qb"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_gpwdj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfbip"]
+_data = {
+"RESET": SubResource("Animation_ox7s4"),
+"idle": SubResource("Animation_subh7"),
+"jump": SubResource("Animation_0a7qb")
+}
 
 [node name="Player" type="RigidBody2D"]
 collision_layer = 2
@@ -13,8 +104,9 @@ gravity_scale = 0.01
 script = ExtResource("1_lylpt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_k7foe")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_x71qi")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7uo3p")
@@ -22,17 +114,28 @@ shape = SubResource("CircleShape2D_7uo3p")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="RayCast1" type="RayCast2D" parent="."]
-position = Vector2(-12, -13)
-target_position = Vector2(27, 0)
+position = Vector2(-6, -9)
+target_position = Vector2(18, 0)
 
 [node name="RayCast2" type="RayCast2D" parent="."]
-position = Vector2(13, -11)
-target_position = Vector2(0, 24)
+position = Vector2(9, -6)
+target_position = Vector2(0, 18)
 
 [node name="RayCast3" type="RayCast2D" parent="."]
-position = Vector2(11, 13)
-target_position = Vector2(-26, 0)
+position = Vector2(6, 9)
+target_position = Vector2(-18, 0)
 
 [node name="RayCast4" type="RayCast2D" parent="."]
-position = Vector2(-13, 10)
-target_position = Vector2(0, -24)
+position = Vector2(-9, 6)
+target_position = Vector2(0, -18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kfbip")
+}
+autoplay = "idle"
+
+[node name="EndAnimTimer" type="Timer" parent="."]
+wait_time = 1.7
+
+[connection signal="timeout" from="EndAnimTimer" to="." method="_on_end_anim_timer_timeout"]
