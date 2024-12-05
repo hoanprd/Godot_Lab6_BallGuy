@@ -3,3 +3,27 @@
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="HPSprite" type="Sprite2D" parent="."]
+
+[node name="CoinSprite" type="Sprite2D" parent="."]
+
+[node name="HPBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="CoinLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

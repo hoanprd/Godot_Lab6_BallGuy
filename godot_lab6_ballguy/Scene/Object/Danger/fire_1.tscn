@@ -1,18 +1,73 @@
-[gd_scene load_steps=3 format=3 uid="uid://j65l04nb321d"]
+[gd_scene load_steps=10 format=3 uid="uid://j65l04nb321d"]
 
-[ext_resource type="Script" path="res://Script/static_danger.gd" id="1_8uacn"]
+[ext_resource type="Script" path="res://Script/fire_gun.gd" id="1_iukuh"]
+[ext_resource type="Texture2D" uid="uid://41k3dqu434r1" path="res://Sprite/FlameGun1_idle.png" id="2_e4ydw"]
+[ext_resource type="Texture2D" uid="uid://b7hgnjivjb0vj" path="res://Sprite/FlameGun1_fire_1.png" id="3_h34oy"]
+[ext_resource type="Texture2D" uid="uid://bmyu4dxpf3w8p" path="res://Sprite/FlameGun1_fire_2.png" id="4_exhrx"]
+[ext_resource type="Texture2D" uid="uid://b80owxjtddg6d" path="res://Sprite/FlameGun1_fire_3.png" id="5_uf3id"]
+[ext_resource type="Texture2D" uid="uid://2chvgy044j27" path="res://Sprite/FlameGun1_fire_4.png" id="6_is5hi"]
+[ext_resource type="Texture2D" uid="uid://6bahx1nwgcsb" path="res://Sprite/FlameGun1_fire_5.png" id="7_hx861"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vljyv"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": ExtResource("2_e4ydw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h34oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_exhrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uf3id")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_is5hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hx861")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu4wo"]
+size = Vector2(130, 32)
 
-[node name="Spike" type="Area2D"]
-script = ExtResource("1_8uacn")
+[node name="fire_1" type="Area2D"]
+z_index = 2
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_iukuh")
 damageDeal = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vljyv")
+autoplay = "default"
+frame_progress = 0.615649
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, 0)
 shape = SubResource("RectangleShape2D_cu4wo")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="HurtTimer" type="Timer" parent="."]
+
+[node name="ShowFireTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="OffFireTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="ShowFireTimer" to="." method="_on_show_fire_timer_timeout"]
+[connection signal="timeout" from="OffFireTimer" to="." method="_on_off_fire_timer_timeout"]

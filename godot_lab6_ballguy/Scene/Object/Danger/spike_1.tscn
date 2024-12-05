@@ -1,18 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://5p7rosaqv4i0"]
+[gd_scene load_steps=10 format=3 uid="uid://5p7rosaqv4i0"]
 
 [ext_resource type="Script" path="res://Script/static_danger.gd" id="1_deagu"]
+[ext_resource type="Texture2D" uid="uid://br1im1qpgfysm" path="res://Sprite/Spike1_1.png" id="2_gvf2w"]
+[ext_resource type="Texture2D" uid="uid://dl6fp6vneupjh" path="res://Sprite/Spike1_2.png" id="3_4siqx"]
+[ext_resource type="Texture2D" uid="uid://bjipa3a4qavg7" path="res://Sprite/Spike1_3.png" id="4_wvdny"]
+[ext_resource type="Texture2D" uid="uid://benrsmpi05oxo" path="res://Sprite/Spike1_4.png" id="5_gm3h8"]
+[ext_resource type="Texture2D" uid="uid://cadcorcwpeonm" path="res://Sprite/Spike1_5.png" id="6_qcr3m"]
+[ext_resource type="Texture2D" uid="uid://bptaecgxmf8qd" path="res://Sprite/Spike1_6.png" id="7_35mxq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omvom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gvf2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4siqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wvdny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gm3h8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qcr3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_35mxq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu4wo"]
+size = Vector2(65, 55)
 
 [node name="Spike" type="Area2D"]
+z_index = 2
+scale = Vector2(0.3, 0.3)
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_deagu")
 damageDeal = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_omvom")
+autoplay = "default"
+frame_progress = 0.907152
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.833333, 14.1667)
 shape = SubResource("RectangleShape2D_cu4wo")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="HurtTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

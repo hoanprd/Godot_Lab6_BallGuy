@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 				pass
 			set_state()
 			process_input()
+	print(Global.health)
 
 func set_state():
 	if ray_foot_1.is_colliding() or ray_foot_2.is_colliding() or ray_foot_3.is_colliding() or ray_foot_4.is_colliding():
