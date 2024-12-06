@@ -34,6 +34,7 @@ window/stretch/mode="canvas_items"
 2d_physics/layer_3="item"
 2d_physics/layer_4="static_danger"
 2d_physics/layer_5="enemy"
+2d_physics/layer_6="area_enter"
 
 [rendering]
 

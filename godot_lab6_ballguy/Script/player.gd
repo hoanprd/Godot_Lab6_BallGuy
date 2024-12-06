@@ -47,7 +47,7 @@ func process_input():
 			self.apply_impulse(move_left_force, Vector2(0,0))
 		direction.x -= 1
 		
-	if Input.is_action_just_pressed("ui_accept") and can_jump == true:
+	if Input.is_action_just_pressed("ui_accept") and can_jump == true and self.position.x >= 40 and self.position.x <= 250:
 		#AudioServer.set_bus_mute(sfxBus, false)
 		#jumpSound.play()
 		ap.play("jump")

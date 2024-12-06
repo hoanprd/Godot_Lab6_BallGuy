@@ -113,6 +113,10 @@ hframes = 4
 shape = SubResource("CircleShape2D_7uo3p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = -50
+limit_right = 318
+limit_bottom = 3022
 
 [node name="RayCast1" type="RayCast2D" parent="."]
 position = Vector2(-6, -9)
