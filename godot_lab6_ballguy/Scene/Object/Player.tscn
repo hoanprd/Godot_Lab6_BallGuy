@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://b36x51p7a4at0"]
+[gd_scene load_steps=11 format=3 uid="uid://b36x51p7a4at0"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_lylpt"]
 [ext_resource type="Texture2D" uid="uid://dkfc8jm3riwxt" path="res://Sprite/Ball_idle.png" id="2_x71qi"]
 [ext_resource type="Texture2D" uid="uid://b7llc074xw47n" path="res://Sprite/Ball_jump.png" id="3_gpwdj"]
+[ext_resource type="AudioStream" uid="uid://dkomi85qbgc5u" path="res://Sound/SoundEffect/JumpEffect.mp3" id="4_qf3wd"]
+[ext_resource type="AudioStream" uid="uid://bj7fpfglxn5k5" path="res://Sound/BackgroundMusic/BGM.mp3" id="5_e8pcl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7uo3p"]
 radius = 8.0
@@ -114,7 +116,7 @@ shape = SubResource("CircleShape2D_7uo3p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
-limit_top = -50
+limit_top = -80
 limit_right = 318
 limit_bottom = 3022
 
@@ -142,5 +144,17 @@ autoplay = "idle"
 
 [node name="EndAnimTimer" type="Timer" parent="."]
 wait_time = 1.7
+
+[node name="JumpEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qf3wd")
+bus = &"FX"
+
+[node name="HurtEffect" type="AudioStreamPlayer2D" parent="."]
+bus = &"FX"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e8pcl")
+autoplay = true
+bus = &"BGM"
 
 [connection signal="timeout" from="EndAnimTimer" to="." method="_on_end_anim_timer_timeout"]

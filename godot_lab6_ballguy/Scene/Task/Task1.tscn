@@ -159,24 +159,63 @@ tile_map_data = PackedByteArray("AAAHAAQAAAAFAAgAAAARAAgAAAAGAAgAAAADABcAAAAGAAg
 tile_set = SubResource("TileSet_isp87")
 
 [node name="Player" parent="." instance=ExtResource("2_nb7fc")]
-position = Vector2(160, -19)
-
-[node name="Spike" parent="." instance=ExtResource("3_b0lcj")]
-position = Vector2(220, 132)
-
-[node name="fire_1" parent="." instance=ExtResource("4_whroc")]
-position = Vector2(57, 233)
-rotation = 3.14159
-
-[node name="fire_2" parent="." instance=ExtResource("4_whroc")]
-position = Vector2(58, 73)
-rotation = 3.14159
+position = Vector2(161, -37)
 
 [node name="AreaEntity" parent="." instance=ExtResource("5_4f2q8")]
 position = Vector2(169, 2997)
 scale = Vector2(15, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("6_lh5s0")]
+
+[node name="Danger" type="Node" parent="."]
+
+[node name="Spike" type="Node" parent="Danger"]
+
+[node name="Spike1_1" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(220, 132)
+
+[node name="Spike1_2" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(141, 171)
+
+[node name="Spike1_3" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(109, 299)
+
+[node name="Spike1_4" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(141, 523)
+
+[node name="Spike1_5" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(161, 523)
+
+[node name="Spike1_6" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(181, 523)
+
+[node name="Spike1_7" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(278, 628)
+
+[node name="Spike1_8" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(258, 628)
+
+[node name="Spike1_9" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(125, 779)
+
+[node name="Spike1_10" parent="Danger/Spike" instance=ExtResource("3_b0lcj")]
+position = Vector2(278, 836)
+
+[node name="Fire" type="Node" parent="Danger"]
+
+[node name="fire1_1" parent="Danger/Fire" instance=ExtResource("4_whroc")]
+position = Vector2(59, 73)
+rotation = 3.14159
+
+[node name="fire1_2" parent="Danger/Fire" instance=ExtResource("4_whroc")]
+position = Vector2(57, 232)
+rotation = 3.14159
+
+[node name="fire1_3" parent="Danger/Fire" instance=ExtResource("4_whroc")]
+position = Vector2(263, 376)
+
+[node name="fire1_4" parent="Danger/Fire" instance=ExtResource("4_whroc")]
+position = Vector2(57, 696)
+rotation = 3.14159

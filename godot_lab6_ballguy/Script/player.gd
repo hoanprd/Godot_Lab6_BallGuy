@@ -12,6 +12,9 @@ extends RigidBody2D
 @onready var ray_foot_3 = $RayCast3
 @onready var ray_foot_4 = $RayCast4
 @onready var end_anim_timer = $EndAnimTimer
+@onready var music_bus = AudioServer.get_bus_index("Music")
+@onready var sfx_bus = AudioServer.get_bus_index("SFX")
+@onready var jump_sound = $JumpEffect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,8 +51,8 @@ func process_input():
 		direction.x -= 1
 		
 	if Input.is_action_just_pressed("ui_accept") and can_jump == true and self.position.x >= 40 and self.position.x <= 250:
-		#AudioServer.set_bus_mute(sfxBus, false)
-		#jumpSound.play()
+		AudioServer.set_bus_mute(sfx_bus, false)
+		jump_sound.play()
 		ap.play("jump")
 		end_anim_timer.start()
 		self.apply_impulse(jump_force, Vector2(0, 0))

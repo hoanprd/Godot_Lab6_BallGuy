@@ -15,10 +15,11 @@ script = ExtResource("1_tpdwa")
 
 [node name="HPBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 57.0
-offset_right = 177.0
-offset_bottom = 18.0
+offset_left = 41.0
+offset_right = 153.0
+offset_bottom = 14.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_j0rip")
+max_value = 5.0
 show_percentage = false
 
 [node name="CoinLabel" type="Label" parent="."]
