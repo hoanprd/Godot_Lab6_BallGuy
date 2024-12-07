@@ -15,23 +15,31 @@ extends RigidBody2D
 @onready var music_bus = AudioServer.get_bus_index("Music")
 @onready var sfx_bus = AudioServer.get_bus_index("SFX")
 @onready var jump_sound = $JumpEffect
+@onready var hurt_sound = $HurtEffect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	AudioServer.set_bus_mute(music_bus, false)
+	AudioServer.set_bus_mute(sfx_bus, false)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Global.win == false:
-		if Global.lose_area == false and Global.lose_kill == false:
-			if Global.get_hurt == true:
-				#AudioServer.set_bus_mute(sfxBus, false)
-				#hurtSound.play()
-				pass
-			set_state()
-			process_input()
-	print(Global.health)
+	if Global.stop_game == false:
+		if Global.win == false:
+			if Global.lose_kill == false:
+				if Global.get_hurt == true:
+					AudioServer.set_bus_mute(sfx_bus, false)
+					hurt_sound.play()
+				set_state()
+				process_input()
+			else:
+				Global.stop_game = true
+				self.freeze = true
+				ap.play("die")
+	else:
+		AudioServer.set_bus_mute(music_bus, true)
+		AudioServer.set_bus_mute(sfx_bus, true)
 
 func set_state():
 	if ray_foot_1.is_colliding() or ray_foot_2.is_colliding() or ray_foot_3.is_colliding() or ray_foot_4.is_colliding():

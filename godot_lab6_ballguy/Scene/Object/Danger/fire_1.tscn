@@ -6,9 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu4wo"]
 size = Vector2(100, 32)
 
-[sub_resource type="Animation" id="Animation_spd6d"]
-resource_name = "idle"
-
 [sub_resource type="Animation" id="Animation_2jpti"]
 length = 0.001
 tracks/0/type = "value"
@@ -136,6 +133,9 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0.5, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1.3, 1), Vector2(1, 1), Vector2(0.5, 1), Vector2(0.5, 1), Vector2(0.5, 1)]
 }
+
+[sub_resource type="Animation" id="Animation_spd6d"]
+resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_juhng"]
 _data = {

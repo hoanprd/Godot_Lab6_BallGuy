@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://b36x51p7a4at0"]
+[gd_scene load_steps=14 format=3 uid="uid://b36x51p7a4at0"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_lylpt"]
 [ext_resource type="Texture2D" uid="uid://dkfc8jm3riwxt" path="res://Sprite/Ball_idle.png" id="2_x71qi"]
 [ext_resource type="Texture2D" uid="uid://b7llc074xw47n" path="res://Sprite/Ball_jump.png" id="3_gpwdj"]
 [ext_resource type="AudioStream" uid="uid://dkomi85qbgc5u" path="res://Sound/SoundEffect/JumpEffect.mp3" id="4_qf3wd"]
+[ext_resource type="Texture2D" uid="uid://cnjt3wgaf51bx" path="res://Sprite/Ball_die.png" id="4_x10bd"]
 [ext_resource type="AudioStream" uid="uid://bj7fpfglxn5k5" path="res://Sound/BackgroundMusic/BGM.mp3" id="5_e8pcl"]
+[ext_resource type="AudioStream" uid="uid://nwp1ng477w2" path="res://Sound/BackgroundMusic/HurtSound.mp3" id="6_ifdcv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7uo3p"]
 radius = 8.0
@@ -91,19 +93,48 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_0avce"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_x10bd")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfbip"]
 _data = {
 "RESET": SubResource("Animation_ox7s4"),
+"die": SubResource("Animation_0avce"),
 "idle": SubResource("Animation_subh7"),
 "jump": SubResource("Animation_0a7qb")
 }
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" groups=["player"]]
 z_index = 2
 collision_layer = 2
 collision_mask = 29
 mass = 1.2
 gravity_scale = 0.01
+freeze_mode = 1
 script = ExtResource("1_lylpt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -150,6 +181,7 @@ stream = ExtResource("4_qf3wd")
 bus = &"FX"
 
 [node name="HurtEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ifdcv")
 bus = &"FX"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]

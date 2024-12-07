@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsby0vyuvgb"]
+[gd_scene load_steps=5 format=3 uid="uid://dsby0vyuvgb"]
 
 [ext_resource type="Script" path="res://Script/ui.gd" id="1_tpdwa"]
+[ext_resource type="Texture2D" uid="uid://bvhxlra3v26c2" path="res://Sprite/DiamondIcon.png" id="2_6ijly"]
+[ext_resource type="Texture2D" uid="uid://b7t2db1ouilgi" path="res://Sprite/HealthIcon.png" id="2_rg7xl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0rip"]
+bg_color = Color(0.951334, 0, 0.140648, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -10,23 +13,30 @@ anchors_preset = 0
 script = ExtResource("1_tpdwa")
 
 [node name="HPSprite" type="Sprite2D" parent="."]
+position = Vector2(12, 12)
+texture = ExtResource("2_rg7xl")
 
 [node name="CoinSprite" type="Sprite2D" parent="."]
+position = Vector2(310, 11)
+texture = ExtResource("2_6ijly")
 
 [node name="HPBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 41.0
-offset_right = 153.0
-offset_bottom = 14.0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 97.0
+offset_bottom = 17.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_j0rip")
 max_value = 5.0
 show_percentage = false
 
 [node name="CoinLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 252.0
-offset_right = 292.0
+offset_left = 255.0
+offset_right = 295.0
 offset_bottom = 23.0
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="WinLosePanel" type="Panel" parent="."]
 layout_mode = 0

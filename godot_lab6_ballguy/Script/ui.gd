@@ -3,7 +3,6 @@ extends Control
 @onready var healthBar = $HPBar
 @onready var pointsLabel = $CoinLabel
 
-#var exitGameTimer: Timer
 var gameOver: bool
 var health_label: Label
 var points_label: Label
@@ -16,7 +15,6 @@ func _ready() -> void:
 	winLose_panel = get_node("WinLosePanel")
 	winLose_label = get_node("WinLosePanel/WinLoseLabel")
 	winLose_panel.visible = false
-	#exitGameTimer = get_node("ExitGameTimer")
 	gameOver = false
 
 
@@ -26,14 +24,14 @@ func _process(delta: float) -> void:
 		pass
 	if Global.win == true:
 		winLose_label.text = "YOU PASS"
-	elif Global.lose_area == true or Global.lose_kill == true:
-		winLose_label.text = "YOU DIE"
 	
 	if (Global.health <= 0 || Global.stop_game):
 		if (!gameOver):
 			gameOver = true
 			winLose_panel.visible = true
-			#exitGameTimer.start()
+			if Global.health <= 0:
+				Global.lose_kill = true
+				winLose_label.text = "YOU DIE"
 	
 	updateUI()
 	HealthUpdate()
