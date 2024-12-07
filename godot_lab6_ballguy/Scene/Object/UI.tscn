@@ -46,9 +46,17 @@ offset_bottom = 180.0
 [node name="WinLoseLabel" type="Label" parent="WinLosePanel"]
 layout_mode = 0
 offset_left = 95.0
-offset_top = 68.0
+offset_top = 29.0
 offset_right = 251.0
-offset_bottom = 106.0
+offset_bottom = 60.0
+
+[node name="ScoreLabel" type="Label" parent="WinLosePanel"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 69.0
+offset_right = 251.0
+offset_bottom = 94.0
+vertical_alignment = 1
 
 [node name="ExitButton" type="Button" parent="WinLosePanel"]
 layout_mode = 0

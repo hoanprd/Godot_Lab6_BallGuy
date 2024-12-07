@@ -6,6 +6,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_03w72"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_rm6n2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_jdtah"]
 resource_name = "idle"
 length = 0.5
@@ -23,21 +38,6 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_rm6n2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1pn80"]
 _data = {
 "RESET": SubResource("Animation_rm6n2"),
@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="CoinA" type="Area2D"]
+z_index = 2
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_sl6jh")

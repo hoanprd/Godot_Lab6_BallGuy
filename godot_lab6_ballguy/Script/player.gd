@@ -12,8 +12,8 @@ extends RigidBody2D
 @onready var ray_foot_3 = $RayCast3
 @onready var ray_foot_4 = $RayCast4
 @onready var end_anim_timer = $EndAnimTimer
-@onready var music_bus = AudioServer.get_bus_index("Music")
-@onready var sfx_bus = AudioServer.get_bus_index("SFX")
+@onready var music_bus = AudioServer.get_bus_index("BGM")
+@onready var sfx_bus = AudioServer.get_bus_index("FX")
 @onready var jump_sound = $JumpEffect
 @onready var hurt_sound = $HurtEffect
 
